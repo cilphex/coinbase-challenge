@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Coinbase challenge</title>
+		<script src="js/jquery.js"></script>
+		<script src="js/main.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/main.css"/>
+	</head>
+	<body>
+
+		<div class="content">
+
+			<h1>Coinbase Challenge</h1>
+
+			<div class="list">
+				<h3>Current bid: <span id="current_bid">&mdash;</span></h3>
+				
+				<p class="trade">
+					<label>Sell <input id="sell_input" type="text"/></label>
+				</p>
+
+				<p><label><input type="radio" name="sell_kind" data-type="btc" checked /> BTC for $</label></p>
+				<p><label><input type="radio" name="sell_kind" data-type="dollar" /> $ for BTC</label></p>
+				
+				<p id="sell_problem" style="display: none;">Not enough to satisfy sale</p>
+
+				<div id="sell_info" class="info" style="display: none;">
+					<p>Market price: <span id="sell_amount">&mdash;</span></p>
+					<p>Our fee: <span id="sell_fee">&mdash;</span></p>
+					<p>Sell for: <span id="sell_final">&mdash;</span></p>
+				</div>
+
+				<h3>Bids</h3>
+				<div class="row clearfix">
+					<span>Sum</span>
+					<span>Amount</span>
+					<span>Price</span>
+					<span>Price sum</span>
+				</div>
+				<div id="bid_list" class="bids"></div>
+			</div>
+
+			<div class="list">
+				<h3>Current ask: <span id="current_ask">&mdash;</span></h3>
+
+				<p class="trade">
+					<label>Buy <input id="buy_input" type="text"/></label>
+					<span id="buy_output">&mdash;</span>
+				</p>
+
+				<p><label><input type="radio" name="buy_kind" data-type="btc" checked/> BTC for $</label></p>
+				<p><label><input type="radio" name="buy_kind" data-type="dollar" /> $ for BTC</label></p>
+
+				<p id="buy_problem" style="display: none;">Not enough to satisfy sale</p>
+
+				<div id="buy_info" class="info" style="display: none;">
+					<p>Market price: <span id="buy_amount">&mdash;</span></p>
+					<p>Our fee: <span id="buy_fee">&mdash;</span></p>
+					<p>Buy for: <span id="buy_final">&mdash;</span></p>
+				</div>
+
+				<h3>Asks</h3>
+				<div class="row clearfix">
+					<span>Sum</span>
+					<span>Amount</span>
+					<span>Price</span>
+					<span>Price sum</span>
+				</div>
+				<div id="ask_list" class="asks"></div>
+			</div>
+
+		</div>
+
+	</body>
+</html>

@@ -1,0 +1,68 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Helvetica, Arial, Verdana, sans-serif;
+}
+
+/* Clearfix */
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+.clearfix {
+	display: inline-block;
+}
+html[xmlns] .clearfix {
+	display: block;
+}
+* html .clearfix {
+	height: 1%;
+}
+/* /clearfix */
+
+div.content {
+	margin: 20px auto;
+	width: 800px;
+	color: #555;
+}
+div.list {
+	float: left;
+	padding: 0 10px 0 0;
+	width: 380px;
+}
+div.list h3 {}
+div.list h3 span {
+	color: #55f;
+}
+div.list p.trade {
+
+}
+div.list p.trade input[type="text"] {
+	width: 60px;
+}
+div.info {
+	margin: 30px 0;
+}
+div.info p {
+	margin: 0 0 5px;
+	font-size: 12px;
+}
+div.list div.row {
+	margin: 0;
+	width: 100%;
+	font-family: courier new;
+	font-size: 11px;
+	border-bottom: 1px solid #eee;
+}
+div.list div.row span {
+	float: left;
+	margin: 0 12px 0 0;
+	padding: 2px;
+	width: 20%;
+	overflow: hidden;
+}

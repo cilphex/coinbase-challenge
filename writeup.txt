@@ -1,0 +1,77 @@
+Craig Hammell
+May 10, 2013
+
+NOTE
+
+This code is incomplete, and will show trades for buys
+or sells from BTC -> $ ONLY.  The $ -> BTC toggle currently does
+not work; I ran out of time.
+
+HOW TO RUN
+
+Drag index.html into your web browser of choice. This code was developed
+in Google Chrome.
+
+SUMMARY
+
+The approach I took is to query the MtGox API on an interval (currently
+60 seconds in the code), and update a local object with a copy of the
+response data.
+
+When the response comes back and the data is updated, I iterate over
+each bid/ask row and show it in two columns.  While doing this, I keep
+track of the building bid/ask sum, and add two new properties to each
+bid/ask item: the amount sum and the price sum of all previous bid/asks.
+
+For example, a single ask object contains the properties 'amount' and
+'price', but no data for the buildup of previous bid/asks in the list.
+If the first few asks are this:
+
+[
+  {amount: 1, price: $100},
+  {amount: 2, price: $101},
+  {amount: 3, price: $102}
+]
+
+I turn them into:
+
+[
+  {amount: 1, price: $100, sum: 1, price_sum: $100},
+  {amount: 2, price: $101, sum: 3, price_sum: $302},
+  {amount: 1, price: $102, sum: 4, price_sum: $404}
+]
+
+Later, when a user enters an amount of BTC to buy or sell, instead
+of keeping track of the sums again, I just find the bid/ask row that has
+a sum greater than the amount the user is trying to sell or buy. I take
+the price_sum from the previous bid/ask in line and add to it the remaining
+BTC fraction * the price at the last bid/ask.
+
+I guess this isn't a major pain point that was solved, just an implementation
+detail.
+
+TRADEOFFS
+
+The page is not very efficient because it displays the full bid/ask list.
+Ideally, it would display a lot less, or be customizable, or not show
+any at all, because it's really something that more technical investors
+would want to see, and not a casual user.  But I left it in because I
+personally like seeing it, and it helped clarify things as I was programming.
+In retrospect the styling for this probably took some time away from
+time I could have spent making the $ -> BTC option available.
+
+In real product use, a query to the API would probably be fired at the
+exact moment that the user was entering their price, instead of relying
+on data that's updated on an interval that might be a few seconds old. This
+would display a closer-to-real-time price and also get rid of unused
+queries behind the scenes.
+
+That method just came across my mind now, I didn't consider it until
+typing it here.
+
+In a real product, for simplicity the user would probably not be shown
+the buy and sell options at the same time.  They would select one or 
+the other. The interface is as it is now for programming convenience. Also,
+prices would be adjusted to convenient decimal places.
+
+Hope this is sufficient!
